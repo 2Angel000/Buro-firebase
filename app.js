@@ -74,7 +74,7 @@ function actualizar() {
         </td>
         <td>
             <button class="btn p-2 m-auto text-white font-bold bg-red-600 rounded" onclick="eliminar(
-            '${doc.id}')">Eliminar
+            '${doc.id}','${doc.data().clave}')">Eliminar
             </button>
         </td>
         <td>
@@ -88,7 +88,7 @@ function actualizar() {
     });
 }
 
-function eliminar(id) {
+function eliminar(id, clave) {
   Swal.fire({
     title: "¿Seguro quiere Eliminar?",
     showDenyButton: true,
@@ -97,17 +97,32 @@ function eliminar(id) {
   }).then((result) => {
     if (result.isConfirmed) {
       Swal.fire("Cuenta Saldada Correctamente!", "", "success");
+
       db.collection("personas")
-        .doc(id)
-        .delete()
-        .then(function () {
-          actualizar();
-          console.loog("Cuenta Eliminada");
-        })
-        .catch(function (err) {
-          console.error("error", err);
+      .where("clave", "==", clave)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          doc.ref.delete(); // Elimina el documento con la clave especificada
         });
-    } else if (result.isDenied) {
+
+      db.collection("deudores")
+      .where("clave", "==", clave)
+      .get()
+      .then(function (querySnapshot){
+        querySnapshot.forEach(function (doc){
+          doc.ref.delete();
+        })
+      });
+
+        actualizar();
+        console.log("Cuenta Eliminada");
+      })
+      .catch(function (error) {
+        console.error("error", error);
+      });
+
+  } else if (result.isDenied) {
       Swal.fire(
         "Enterado, puede seguir gestionando sus pagos con normalidad",
         "",
@@ -192,7 +207,7 @@ const consultaDeudores = () => {
             <td>${doc.data().pagos}</td>
             <td>
             <button class="btn p-2 m-auto text-white font-bold bg-red-600 rounded" onclick="eliminar2(
-            '${doc.id}')">Eliminar
+            '${doc.id}','${doc.data().clave}')">Eliminar
             </button>
         </td>
           </tr>`;
@@ -249,7 +264,7 @@ const agregarTablaDeudores = (id, clave, nombre, prestamo, pagos) => {
 };
 
 
-function eliminar2(id) {
+function eliminar2(id, clave) {
     Swal.fire({
       title: "¿Seguro quiere eliminar?",
       showDenyButton: true,
@@ -257,18 +272,33 @@ function eliminar2(id) {
       denyButtonText: `Cancelar`,
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deudor Eliminado Correctamente!", "", "success");
-        db.collection("deudores")
-          .doc(id)
-          .delete()
-          .then(function () {
-            actualizar();
-            console.loog("Cuenta Eliminada");
-          })
-          .catch(function (err) {
-            console.error("error", err);
+        Swal.fire("Cuenta Saldada Correctamente!", "", "success");
+
+        db.collection("personas")
+        .where("clave", "==", clave)
+        .get()
+        .then(function (querySnapshot) {
+          querySnapshot.forEach(function (doc) {
+            doc.ref.delete(); // Elimina el documento con la clave especificada
           });
-      } else if (result.isDenied) {
+  
+        db.collection("deudores")
+        .where("clave", "==", clave)
+        .get()
+        .then(function (querySnapshot){
+          querySnapshot.forEach(function (doc){
+            doc.ref.delete();
+          })
+        });
+
+          actualizar();
+          console.log("Cuenta Eliminada");
+        })
+        .catch(function (error) {
+          console.error("error", error);
+        });
+
+    } else if (result.isDenied) {
         Swal.fire(
           "Enterado, puede seguir gestionando sus pagos con normalidad",
           "",
