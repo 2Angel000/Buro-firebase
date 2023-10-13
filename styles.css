@@ -1,0 +1,126 @@
+@import url("https://fonts.googleapis.com/css2?family=Caprasimo&family=Dancing+Script&family=Handlee&family=Mooli&family=Quicksand:wght@300;400&family=Satisfy&display=swap");
+
+#panelAdd, #panelGestionar, #abonos {
+  display: none;
+}
+
+body{
+ color: whitesmoke;
+ background-color: rgba(19, 36, 59, 0.931);
+}
+
+.contenedor {
+  border-radius: 10px;
+}
+
+.contenedor2 {
+  background-size: cover;
+  padding-top: 40px;
+}
+
+.contenedor img {
+  height: 100px;
+  width: 100px;
+  margin: 0 auto;
+  border-radius: 100px;
+  opacity: 0.7;
+}
+
+.card-container {
+  border: 2px solid #fafafa02;
+  margin: 0 auto;
+  border-radius: 1rem;
+}
+
+.contenedor-p{
+  border-radius: 10px;
+  width: 80vw;
+  height: 90vh;
+}
+
+.glass-effect {
+  background: #ffffff10;
+  /* background: var(--gradiente-color); */
+  backdrop-filter: blur(0.2rem);
+  -webkit-backdrop-filter: blur(0.2rem);
+}
+
+.glass-effect2 {
+  background: #ffffff10;
+  backdrop-filter: blur(0.9rem);
+  -webkit-backdrop-filter: blur(0.9rem);
+}
+
+.campos {
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.no-seleccionar{
+    user-select: none;
+}
+
+.btn{
+    margin: 0 auto;
+}
+
+.btn:hover{
+    cursor: pointer!important ;
+    background: #d0d0d07d;
+    transition:.5s ease all;
+    transform: scale(.98) translateZ(0)!important;;
+    color: whitesmoke;
+}
+
+.acordeon {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.panelAdd {
+  display: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+input[type="text"], input[type="number"]{
+  color: black;
+  text-align: center;
+}
+
+.alt{
+  margin-top: 5px;
+}
+
+.btn-n {
+  background: transparent;
+  color: #ffffff; /* Color del texto */
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background 0.3s, color 0.3s; /* Transición para background y color */
+}
+
+.btn-n:hover {
+  border-radius: 5px;
+  background: #007bff; /* Nuevo color de fondo al pasar el mouse por encima */
+  color: #fff; /* Nuevo color de texto al pasar el mouse por encima */
+}
+
+.section{
+  text-align: center;
+  width: 50vw;
+  margin-right: 30px;
+  font-size: 20px;
+}
+
+input[type="checkbox"]{
+  margin: auto;
+  width: 16px; /* Ancho personalizado */
+  height: 16px; /* Altura personalizada */
+}

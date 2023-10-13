@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" href="assets/bg.png" type="image/x-icon">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/bg.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/b29e775e16.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-firestore-compat.js"></script>
+    <title>Inicio</title>
+  </head>
+  <body>
+    <div id="content">
+      <div class="min-h-screen contenedor2">
+        <div class="container mx-auto p-4 contenedor-p">
+          <h1 class="text-3xl font-bold text-center mb-4 mt-10">
+            Control de pagos
+          </h1>
+          <hr class="mb-10" />
+          <div
+            class="text-center mt-4 acordeon no-seleccionar desplegable rounded"
+            onclick="panelAdd()"
+          >
+            Agregar Cuenta
+          </div>
+          <div id="panelAdd" class="glass-effect bg-gray-800 rounded">
+            <div class="md:block lg:block">
+              <div
+                class="grid grid-rows-2 grid-cols-2 gap-8 pt-4 pb-4 sm:grid-cols-4 sm:gap-8 m-5"
+              >
+                Clave:
+                <input type="text" placeholder="Clave" id="clave" required />
+                Nombre:
+                <input type="text" placeholder="Nombre" id="nombre" required />
+                Pagos:
+                <input type="number" placeholder="Pagos" id="pagos" required />
+                Prestamo:
+                <input
+                  type="number"
+                  placeholder="Prestamo"
+                  id="prestamo"
+                  required
+                />
+                <button
+                  onclick="guardar()"
+                  class="btn p-2 m-auto text-black font-bold bg-white rounded w-full"
+                >
+                  Guardar
+                </button>
+                <div class="section">
+                  <input type="checkbox" name="pred" id="dos" value="2000"/> 2,0000&nbsp;
+                  <input type="checkbox" name="pred" id="cinco" value="5000"/> 5,000&nbsp;
+                  <input type="checkbox" name="pred" id="diez" value="10000"/> 10,0000&nbsp;
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <div
+            class="text-center mt-4 acordeon no-seleccionar desplegable rounded"
+            onclick="panelGestionar()"
+          >
+            Gestionar Cuentas
+          </div>
+          <div id="panelGestionar" class="rounded">
+            <button class="btn-n" onclick="actualizar()">
+              Listar Clientes&nbsp;&nbsp;&nbsp;
+            </button>
+            <button class="btn-n" onclick="consultaDeudores()">
+              Consultar Deudores
+            </button>
+            <hr class="mb-10" />
+            <input
+              type="text"
+              id="buscarClave"
+              placeholder="Buscar por clave"
+              oninput="buscarPorClave()"
+            />
+            <br />
+            <div class="md:block lg:block">
+              <table
+                class="table-fixed w-full bg-gray-800 text-white table-hover mt-5 text-center"
+              >
+                <thead class="border-b border-gray-300">
+                  <th>Clave</th>
+                  <th>Nombre</th>
+                  <th>Prestamo</th>
+                  <th>No. Pagos</th>
+                  <th>Opciones</th>
+                </thead>
+                <tbody id="tabla"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+    <script src="functions.js"></script>
+  </body>
+</html>
