@@ -14,6 +14,16 @@ function guardar() {
   let pagos = document.getElementById("pagos").value;
   let prestamo = document.getElementById("prestamo").value;
 
+  // Validar que no haya campos vacíos
+  if (!clave || !nombre || !pagos || !prestamo) {
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Por favor, complete todos los campos antes de guardar.",
+    });
+    return; // Detener la función si hay campos vacíos
+  }
+
   db.collection("personas")
     .add({
       clave: clave,
@@ -40,6 +50,7 @@ function guardar() {
     timer: 1500,
   });
 }
+
 
 function actualizar() {
   var tabla = document.getElementById("tabla");
